@@ -30,6 +30,26 @@ function solution(A, K){
    }
 }
 
+//SCORE: 66%
+// CATEGORY: Array
+//TITLE: OddOccurrencesInArray
+/*Find value that occurs in odd number of elements*/
+function solution(A){
+    // if(A.length < 1 || A.length >1000000 || A.length % 2 === 0 ){
+    //     throw new Error ("Argument must be an array of odd length between [1..1,000,000]")
+    // }
+    // if(A.find(e=>e<1 || e > 1000000000 || e % 2 === 0)){
+    //     throw new Error ("Argument must be an array containing odd elements between [1..1,000,000]")
+    // }
+
+    let res = Array.from( new Set(A)).filter(v=> A.filter(e=> v === e).length % 2 != 0);
+    if(res.length != 1){
+        throw new Error ("Argument must have a unique element of odd occurence number")
+    }
+    
+    return res[0];
+}
+
 //SCORE: 33%
 // CATEGORY: TEST
 //TITLE: minimumMissingPositiveInteger in array
