@@ -45,8 +45,8 @@ let solution2=(A)=>{
 
 
 //SCORE: 100%
-// CATEGORY: TEST
-//TITLE: Longest binary zeros
+// CATEGORY: Iteration
+//TITLE: BinaryGap (Longest binary zeros)
 function solution3(num) {
     let str = num.toString(2);
     let  len = 0;
