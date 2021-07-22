@@ -50,17 +50,19 @@ function solution(A){
     return res[0];
 }
 
-//SCORE: 33%
+//SCORE: 100%
 // CATEGORY: TEST
 //TITLE: minimumMissingPositiveInteger in array
 /* Needs improvement*/
 
-let solution2=(A)=>{
-  let B = A.map(e=> e<0?1:e+1);
-//   console.log(B);
-  let min = B.filter((e)=> e > 0 && !A.includes(e));
-//   console.log(min);
-  return min.length< 1 ?1: Math.min(...min);
+function solution(A) {
+    let missingInteger = 1;
+    A = A.sort((a, b) => a - b);
+    for(let i = 0; i < A.length; i++){
+        if(A[i] == missingInteger ) missingInteger++;
+        if(A[i] > missingInteger) return missingInteger;
+    }
+    return missingInteger;
 }
 
 
