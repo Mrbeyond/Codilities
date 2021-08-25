@@ -87,36 +87,36 @@ function solution3(num) {
 //CATEGORY: Iteration
 //TITLE: Power object filter. Recursion.
 const filter=(data)=>{
-	  let copy = Array.isArray(data)?[]:{};
-	  for (let item in data) {
-	  	if(data[item] == 'n' )continue;
-	  	// console.log(data[item]);
-	  	let temp;
-	  	switch (typeof data[item]) {
-	  		case ('string'):
-	  		  temp = {[item]:data[item]}
-	  			break;
-	  		case ('number'):
-	  		  temp = {[item]:data[item]}
-	  			break;
-	  		default:
-	  			if(Array.isArray(data[item])){
-	         temp = {[item]: [...(data[item].filter(d=> d != 'n').map(e=>{
-	         	if(typeof e == 'object'){
-	         		 if(Array.isArray(e)){
-                  return e.filter(n=> n !='n');
-	         		 }
-	         	 	 return format(e);
-	         	}
-	         	return e;
-	         }))]};
-	  			}else {
-	  				console.log('\n is obj \n ');
-	  				temp = {[item]:format(data[item])};
-	  			}
-	  			break;
-	  	}
-	  	copy = Object.assign({},copy, temp);
-	  }
-	  return copy;
+  let copy = Array.isArray(data)?[]:{};
+  for (let item in data) {
+	if(data[item] == 'n' )continue;
+	// console.log(data[item]);
+	let temp;
+	switch (typeof data[item]) {
+	  case ('string'):
+           temp = {[item]:data[item]}
+	   break;
+          case ('number'):
+	    temp = {[item]:data[item]}
+	    break;
+	  default:
+	    if(Array.isArray(data[item])){
+	      temp = {[item]: [...(data[item].filter(d=> d != 'n').map(e=>{
+		if(typeof e == 'object'){
+	           if(Array.isArray(e)){
+	              return e.filter(n=> n !='n');
+		   }
+		   return format(e);
+		}
+		return e;
+	 }))]};
+	}else {
+	  console.log('\n is obj \n ');
+	  temp = {[item]:format(data[item])};
+	}
+	break;
+      }
+      copy = Object.assign({},copy, temp);
+  }
+  return copy;
   };
