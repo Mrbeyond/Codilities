@@ -86,7 +86,7 @@ function solution3(num) {
 //SCORE: Unofficial
 //CATEGORY: Iteration
 //TITLE: Power object filter. Recursion.
-const filter=(data)=>{
+const format=(data)=>{
   let copy = Array.isArray(data)?[]:{};
   for (let item in data) {
 	if(data[item] == 'n' )continue;
