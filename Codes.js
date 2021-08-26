@@ -85,28 +85,24 @@ function solution3(num) {
 
 //SCORE: Unofficial
 //CATEGORY: Iteration
-//TITLE: Power object filter. Recursion.
+//TITLE: Powerful object filter. Recursion.
 const format=(data)=>{
 
   const isArr=(val)=> Array.isArray(val);
-  	
-  const proArray=(arr)=>{
-    return arr.filter(d=> d != 'n').map(e=>{
-	return (typeof e == 'object')? format(e): e?
-    })
-  }
+
+  const proArray=(arr)=> arr.filter(d=> d != 'n').map(e=> (typeof e == 'object')? format(e): e);  	
 
   const proObject=(obj)=>{
     let OBJ={};
     for(let item in obj){
-      if(obj[item] == "n") continue;
-      if(typeof obj[item] == 'object'){
-	OBJ = {...OBJ, [item]:format(obj[item])}
-      }else{
-	OBJ = {...OBJ, [item]:data[item]}
-      }
+	if(obj[item] == "n") continue;
+	if(typeof obj[item] == 'object'){
+	   OBJ = {...OBJ, [item]:format(obj[item])}
+	}else{
+	  OBJ = {...OBJ, [item]:data[item]}
+	}
     }
     return OBJ;
   }
-   return isArr(data)? proArray(data): proObject(data);
+  return isArr(data)? proArray(data): proObject(data);
  };
