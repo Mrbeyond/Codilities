@@ -106,3 +106,43 @@ const format=(data)=>{
   }
   return isArr(data)? proArray(data): proObject(data);
  };
+
+
+
+//SCORE: 100%
+// CATEGORY: Iteration
+// SOURCE: Vanhack
+//TITLE: Deep Object to string and back to object (SERIALIZE);
+
+function serialize(patientData) {
+//   console.log({patientData});
+  let collection="";
+  let patients= Array.from(new Set(patientData.map((data)=>data.patientId))).sort();
+//   console.log({patients});
+  let reform = patients.map((pat)=>{
+    return{
+      id:pat,
+      data: patientData.filter((fil)=>fil.patientId == pat).flatMap((flam)=>{
+        delete flam.patientId
+        return{
+          ...flam,
+        }
+      }).sort((a,b)=> a.visitDate > b.visitDate? 1: (a.visitDate < b.visitDate ? -1 : 0) )
+    }
+  })
+  console.log(JSON.stringify(reform));
+  for(let i =0; i< reform.length; i++){
+    let ref = reform[i];
+    collection += `>${ref.id}`;
+    for(let j= 0; j<ref.data.length; j++){
+      let curr = ref.data[j]
+      const paid = curr.paid ? "Y" : "N";
+      const codes = (curr.treatmentCodes || []).join(",");
+     collection += '\n'+`+${curr.visitDate}|${paid}|${codes}`;
+    
+  }
+    if(i != reform.length-1) collection +="\n";
+    }
+  
+  return collection;
+}
